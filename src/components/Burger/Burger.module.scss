@@ -1,0 +1,63 @@
+.Burger {
+    width: 60%;
+    height: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.TopLayer{
+    background:linear-gradient(#bc581e, #e27b36);
+    width: 90%;
+    height: 120px;
+    margin: 0 auto;
+    border-radius: 50% 50% 0 0;
+    box-shadow: inset -15px 0 #c15711;
+    position: relative;
+}
+@mixin seed($left,$top,$rotate){
+    display: inline-block;
+    width: 10%;
+    height: 15%;
+    position: absolute;
+    background-color: white;
+    left: $left;
+    top: $top;
+    border-radius: 40%;
+    transform: rotate($rotate);
+    box-shadow: inset -2px -3px #c9c9c9;
+}
+
+.seedOne{
+    @include seed(10%,40%,60deg)
+}
+.seedTwo{
+     @include seed(25%,40%,-20deg)
+}
+.seedThree{
+     @include seed(45%,40%,60deg)
+}
+.seedFour{
+     @include seed(62%,40%,-20deg)
+}
+.seedFive{
+     @include seed(80%,40%,60deg)
+}
+
+.BottomLayer {
+    background:linear-gradient(#F08E4A, #e27b36);
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 0 0 30px 30px;
+    box-shadow: inset -15px 0 #c15711;
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
