@@ -1,7 +1,5 @@
 import React from 'react';
-import bs from '../../../assets/global-styles/bootstrap.module.css'
 import Classes from './BurgerIngredient.module.scss'
-import CN from 'classnames';
 
 const BurgerIngredient = (props) => {
     let transformedIngredient = null;

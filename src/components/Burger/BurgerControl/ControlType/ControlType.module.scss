@@ -1,5 +1,40 @@
 .control-row {
     width : 100%;
+    margin: 20px 0;
     display: flex;
     justify-content: center;    /* Add this */
+}
+
+.control-row * {
+    margin-left: 30px;;
+}
+
+.control-row div:first-of-type {
+    padding: 5px;
+    margin: 0 5px;
+    width: 100px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.control-row button:first-of-type {
+    display: block;
+    font: inherit;
+    padding: 5px;
+    margin: 0 5px;
+    width: 80px;
+    border: 1px solid #AA6817;
+    cursor: pointer;
+    outline: none;
+    min-height: 33px;
+}
+.control-row button:nth-of-type(2) {
+    display: block;
+    font: inherit;
+    padding: 5px;
+    margin: 0 5px;
+    width: 80px;
+    border: 1px solid rgb(5, 122, 15);
+    cursor: pointer;
+    outline: none;
+    min-height: 33px;
 }

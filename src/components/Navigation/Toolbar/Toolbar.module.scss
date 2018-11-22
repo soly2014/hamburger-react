@@ -1,0 +1,22 @@
+.Header-container {
+  background-color: #703B09;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Header {
+  width: 1200px;
+  padding: 0px 20px;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}

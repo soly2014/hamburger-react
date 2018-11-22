@@ -19,7 +19,7 @@ const Burger = (props) => {
       transformedIngredients = <h3 className={CN(bs['text-center'])}>There is No Ingredients</h3>
     } 
     return (
-      <div  className={Classes.Burger}>
+      <div className={Classes.Burger}>
           <div className={Classes.TopLayer}>
               <span className={CN(Classes.seedOne)}></span>
               <span className={CN(Classes.seedTwo)}></span>
