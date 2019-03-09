@@ -1,14 +1,12 @@
 import React from 'react';
-import Classess from './NavigationItem.module.scss';
+import Classes from './NavigationItem.module.scss';
+import {NavLink} from 'react-router-dom'
 
 const NavigationItem = (props) => {
-    const active = { backgroundColor:'#8F5C2C',
-                    color:'#ffffff',
-                    borderBottom:'4px solid #40A4C8'
-    }
- return (
-    <li className={Classess.item} style={ props.active ? active : null}>
-    <a href='#'>{props.children}</a></li>
+  console.log(Classes.active);
+  return (
+      <li className={[Classes.item].join(' ')}>
+      <NavLink className={[Classes.NavItem].join(' ')} exact={props.exact} to={props.url} activeClassName={Classes.active}>{props.children}</NavLink></li>
   )
 }
 

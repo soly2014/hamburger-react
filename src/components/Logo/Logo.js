@@ -4,7 +4,7 @@ import LogoURL from '../../assets/images/burger-logo.png'
 
 const Logo = () => (
   <div className={Classess.Logo}>
-      <img src={LogoURL}></img>
+      <img alt="LOGO" src={LogoURL}></img>
   </div>
 )
 

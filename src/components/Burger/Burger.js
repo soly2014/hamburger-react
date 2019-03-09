@@ -6,18 +6,18 @@ import CN from 'classnames';
 
 const Burger = (props) => { 
     let transformedIngredients = Object.keys(props.ingredients)
-    .map(ingredient => {
-      return [...Array(props.ingredients[ingredient])].map((_,i)=>{
-        return <BurgerIngredient type={ingredient} key={ingredient+i} />
+      .map(ingredient => {
+        return [...Array(props.ingredients[ingredient])].map((_,i)=>{
+          return <BurgerIngredient type={ingredient} key={ingredient+i} />
+        })
       })
-    })
-    .reduce((arr, el) => {
-        return arr.concat(el)
-    }, []);
+      .reduce((arr, el) => {
+          return arr.concat(el)
+      }, []);
 
-    if(transformedIngredients.length == 0 ){
+    if(transformedIngredients.length === 0 ){
       transformedIngredients = <h3 className={CN(bs['text-center'])}>There is No Ingredients</h3>
-    } 
+    }
     return (
       <div className={Classes.Burger}>
           <div className={Classes.TopLayer}>

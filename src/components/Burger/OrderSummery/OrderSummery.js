@@ -12,13 +12,13 @@ const OrderSummery = (props) => {
               <div className={CN(bs['modal-body'])}>
                 <ul className={CN(bs['list-group'])}>
                   {props.Types.map(type=>{
-                    return (<li className={CN(bs['list-group-item'])}>{type} {props.ingredients[type]}</li>)
+                    return (<li key={type} className={CN(bs['list-group-item'])}>{type} {props.ingredients[type]}</li>)
                   })}
                 </ul>
               </div>
               <div className={CN(bs['modal-footer'])}>
                 <button type="button" onClick={()=> props.cancelPurchaseModal()} className={CN(bs['btn'],bs['btn-secondary'])}>Close</button>
-                <button type="button" className={CN(bs['btn'],bs['btn-primary'])}>Save changes</button>
+                <button type="button" onClick={()=> props.continuePurchasing()} className={CN(bs['btn'],bs['btn-primary'])}>continue purchasing</button>
               </div>
             </div>
           </div>

@@ -1,22 +1,37 @@
-.item {
+.NavItem {
   height: 100%;
-  padding: 16px 20px;
+  padding: 19px 20px;
   margin-top: 15px;
   box-sizing: border-box;
   margin-top: 0;
   color: white;
   font-size: 16px;
-}
-
-.item  a,.item  a:active, .item  a:visited {
   color: white;
   text-decoration: none;
+
 }
 
-.item:hover {
+.NavItem:hover, .active{
   color: white;
   text-decoration: none;
   background-color: #8F5C2C;
   border-bottom: 4px solid #40A4C8;
 
 }
+
+// .item  a,.item  a:active, .item  a:visited {
+// }
+
+// .item:hover {
+//   color: white;
+//   text-decoration: none;
+//   background-color: #8F5C2C;
+//   border-bottom: 4px solid #40A4C8;
+
+// }
+// .active {
+//   background-color:#8F5C2C;
+//   color:#ffffff;
+//   border-bottom:4px solid #40A4C8;
+
+// }
