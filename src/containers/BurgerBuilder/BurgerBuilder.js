@@ -27,7 +27,6 @@ class BurgerBuilder extends Component {
                 .then(response=>{
                     this.setState({ingredients:response.data});
                     this.updatePurchasable(response.data);
-                    this.calculateTotalPrice()
                 }).catch(error=>{
                     console.log(error)
                 })
@@ -36,7 +35,7 @@ class BurgerBuilder extends Component {
         const sum = Object.keys(updatedIngredients)
             .map(el => updatedIngredients[el])
             .reduce((acc,el) => acc+el,0);
-        this.setState({purchasable:sum > 0})
+        return sum > 0;
     }
     addIngredient = (type) => {
         const {ingredients} = {...this.state};
@@ -44,13 +43,6 @@ class BurgerBuilder extends Component {
         const TotalPrice = this.props.TotalPrice + INGREDIENTS_PRICES[type];
         this.setState({ingredients,TotalPrice});
         this.updatePurchasable(ingredients);
-    }
-    calculateTotalPrice(){
-        const total = Object.keys(this.props.ingredients)
-            .reduce((acc,type) =>{
-                return acc + (this.props.ingredients[type] * INGREDIENTS_PRICES[type])
-            } ,4)
-        return total;
     }
     removeIngredient = (type) => {
         if(this.props.ingredients[type] <= 0 ){ return; }
@@ -70,11 +62,7 @@ class BurgerBuilder extends Component {
     }
 
     continuePurchasing = () => {
-        const stringParams = '?'+ Object.keys(this.props.ingredients)
-                        .map(el => {
-                            return encodeURIComponent(el) + '=' + encodeURIComponent(this.props.ingredients[el]);
-                        }).join('&')+'&price='+ this.calculateTotalPrice();
-        this.props.history.push({pathname:'/check-out',search:stringParams});
+        this.props.history.push({pathname:'/check-out'});
     }
 
     render(){
@@ -84,8 +72,8 @@ class BurgerBuilder extends Component {
                 <BurgerControl
                     showPurchaseModal={this.state.showPurchaseModal}
                     clicked={this.handleClickPurchase}
-                    purchasable={this.state.purchasable}
-                    TotalPrice={this.calculateTotalPrice()}
+                    purchasable={this.updatePurchasable(this.props.ingredients)}
+                    TotalPrice={this.props.TotalPrice}
                     ingredients={this.props.ingredients}
                     removeIngredient={this.props.onIngredientRemoved}
                     addIngredient={this.props.onIngredientAdded}
