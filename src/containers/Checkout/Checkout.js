@@ -23,7 +23,7 @@ class Checkout extends Component {
               <button onClick={() => this.handleContinue() } className={[bs['btn'],bs['btn-success'],bs['btn-lg'],Classes.btn].join(' ')}>Continue </button>
               <button onClick={() => this.handleCancel() } className={[bs['btn'],bs['btn-danger'],bs['btn-lg']].join(' ')}>Cancel</button>
             </div>
-            <Route path={this.props.match.path+'/contact-data'} render={(props)=> <ContactDetails ingredients={this.props.ingredients} price={this.props.TotalPrice} {...props} />} />
+            <Route path={this.props.match.path+'/contact-data'} component={ContactDetails} />
         </div>
       </div>
     )

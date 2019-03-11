@@ -4,6 +4,7 @@ import bs from "../../../assets/global-styles/bootstrap.module.css";
 import axios from "../../../axios-orders";
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
+import { connect } from 'react-redux';
 
 class ContactDetails extends Component {
   constructor(props) {
@@ -77,7 +78,7 @@ class ContactDetails extends Component {
     event.preventDefault();
     const orderDetails = {
       ingredients: this.props.ingredients,
-      price: this.props.price,
+      price: this.props.TotalPrice,
       customer: {
         name: this.state.orderForm.name.value,
         address: {
@@ -150,4 +151,13 @@ class ContactDetails extends Component {
     );
   }
 }
-export default ContactDetails;
+
+const  mapStateToProps = (state) => {
+  return {
+    ingredients: state.ingredients,
+    TotalPrice: state.TotalPrice
+  }
+}
+
+export default connect(mapStateToProps)(ContactDetails);
+
