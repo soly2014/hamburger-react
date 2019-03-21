@@ -5,6 +5,8 @@ import axios from "../../../axios-orders";
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';
 import { connect } from 'react-redux';
+import * as actionCreators from '../../../store/actions/index';
+import withErrorHandler from '../../../components/Hoc/ErrorHandler/WithErrorHandler';
 
 class ContactDetails extends Component {
   constructor(props) {
@@ -67,10 +69,9 @@ class ContactDetails extends Component {
                     ],
                     placeholder: 'Your Option Goes here'
                 },
-                value: ''
+                value: 'fastest'
           }
-      },
-      loading: false
+      }
     };
   }
 
@@ -90,16 +91,10 @@ class ContactDetails extends Component {
       },
       shippingMethod: this.state.orderForm.shippingMethod.value
     };
-    this.setState({ loading: true });
-    axios
-      .post("/orders.json", orderDetails)
-          .then(response => {
-            this.setState( { loading: false } );
-            this.props.history.push('/');
-          })
-          .catch(error => {
-            this.setState( { loading: false } );
-          });
+
+    this.props.onPurchasePurgerStart();
+    this.props.onPurchasePurger(orderDetails);
+
   };
 
   handleChangeInput (e,inputName){
@@ -112,7 +107,7 @@ class ContactDetails extends Component {
     updatedFormElement.value = e.target.value;
     updatedOrderForm[inputName] = updatedFormElement;
     this.setState({orderForm: updatedOrderForm});
-}
+  }
   render() {
     let Inputs = [];
     for (const input in this.state.orderForm) {
@@ -141,7 +136,7 @@ class ContactDetails extends Component {
           </button>
         </form>
     );
-    if (this.state.loading) {
+    if (this.props.loading) {
       form = <Spinner />;
     }
     return (
@@ -152,12 +147,20 @@ class ContactDetails extends Component {
   }
 }
 
-const  mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    ingredients: state.ingredients,
-    TotalPrice: state.TotalPrice
+    onPurchasePurger: (orderDetails) => dispatch(actionCreators.purchasePurger(orderDetails)),
+    onPurchasePurgerStart: () => dispatch(actionCreators.purchasePurgerStart())
   }
 }
 
-export default connect(mapStateToProps)(ContactDetails);
+const  mapStateToProps = (state) => {
+  return {
+    ingredients: state.burgerBuilder.ingredients,
+    TotalPrice: state.burgerBuilder.TotalPrice,
+    loading:state.orders.loading
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(ContactDetails));
 

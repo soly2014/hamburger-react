@@ -1,20 +1,21 @@
-import * as actionTypes from '../actions.js'
+import * as actionTypes from '../actions/actionTypes'
 
 const defaultState = {
   ingredients:{
     bacon:1,
-    salad:0,
-    meat:1,
+    salad:1,
+    meat:0,
     cheese:0
   },
-  TotalPrice: 4
+  TotalPrice: 5,
+  error:false
 };
 
 const INGREDIENT_PRICES = {
-  salad: 0.5,
-  cheese: 0.4,
-  meat: 1.3,
-  bacon: 0.7
+  salad: 1,
+  cheese: 2,
+  meat: 5,
+  bacon: 4
 };
 
 const burgerBuilderReducer = (state = defaultState, action) => {
@@ -37,10 +38,24 @@ const burgerBuilderReducer = (state = defaultState, action) => {
             },
             TotalPrice:state.TotalPrice - INGREDIENT_PRICES[action.ingName]
           }
-      default:
+      case actionTypes.INIT_INGREDIENTS:
           return {
-            ...state
-          }
+            ...state,
+            ingredients:action.ingredients,
+            TotalPrice:Object.keys(action.ingredients)
+                              .reduce((total,ing) => {
+                                return total + (action.ingredients[ing] * INGREDIENT_PRICES[ing])
+                              },0),
+            error:false
+
+          };
+      case actionTypes.FETCH_INGREDIENTS_FAILED:
+          return {
+            ...state,
+            error:true
+          };
+      default:
+          return state;
     }
 }
 
