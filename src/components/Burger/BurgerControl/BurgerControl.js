@@ -13,14 +13,14 @@ const BurgerControl = (props) => {
                             continuePurchasing={props.continuePurchasing}
                             Types={Types}
                             ingredients={props.ingredients}
-                            cancelPurchaseModal={props.cancelPurchaseModal}/>;
+                            cancelModal={props.cancelModal}/>;
     if (props.PurchaseSpinner) {
         ModalContent = <Spinner />
     }
 
     return (
         <>
-            <Modal show={props.showPurchaseModal} cancelPurchaseModal={props.cancelPurchaseModal}>
+            <Modal show={props.showPurchaseModal} cancelModal={props.cancelModal}>
                 {ModalContent}
             </Modal>
             <div className={CN(classNames.wrapper,bs['text-center'])}>
@@ -37,7 +37,7 @@ const BurgerControl = (props) => {
                     className={CN(bs.btn,bs['btn-lg'],bs['btn-primary'])}
                     disabled={!props.purchasable}
                     onClick={()=>props.clicked()}>
-                Purchase Now</button></div>
+                {props.isAuthenticated ? "Purchase Now" : "Sign Up First"}</button></div>
             </div>
         </>
     )

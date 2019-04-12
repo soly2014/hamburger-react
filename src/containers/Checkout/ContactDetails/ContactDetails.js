@@ -93,7 +93,7 @@ class ContactDetails extends Component {
     };
 
     this.props.onPurchasePurgerStart();
-    this.props.onPurchasePurger(orderDetails);
+    this.props.onPurchasePurger(orderDetails,this.props.history);
 
   };
 
@@ -149,7 +149,7 @@ class ContactDetails extends Component {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onPurchasePurger: (orderDetails) => dispatch(actionCreators.purchasePurger(orderDetails)),
+    onPurchasePurger: (orderDetails,history) => dispatch(actionCreators.purchasePurger(orderDetails,history)),
     onPurchasePurgerStart: () => dispatch(actionCreators.purchasePurgerStart())
   }
 }
@@ -162,5 +162,5 @@ const  mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(ContactDetails));
+export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(ContactDetails,axios));
 

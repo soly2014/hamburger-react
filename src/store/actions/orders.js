@@ -23,14 +23,56 @@ export const purchasePurgerSuccess = () => {
 };
 
 // post network request
-export const purchasePurger = orderDetails => dispatch => {
-  axios.post('/orders.jso ',orderDetails)
+export const purchasePurger = (orderDetails,history) => dispatch => {
+  axios.post('/orders.jsn',orderDetails)
         .then(data => {
-          dispatch(purchasePurgerSuccess())
+          dispatch(purchasePurgerSuccess());
+          history.push('/');
         })
         .catch(error => {
           dispatch(purchasePurgerFail())
         });
 };
+
+
+//
+//  FETCHING ORDERS
+//
+export const fetchOrdersStart = () => {
+  return {
+    type:actionTypes.FETCH_ORDERS_START
+  }
+};
+
+export const fetchOrdersFail = (error) => {
+  return {
+    type:actionTypes.FETCH_ORDERS_FAIL,
+    error
+  }
+};
+
+export const fetchOrdersSuccess = (orders) => {
+  return {
+    type:actionTypes.FETCH_ORDERS_SUCCESS,
+    orders
+  }
+};
+
+export const fetchOrders = token => dispatch => {
+    dispatch(fetchOrdersStart());
+    axios.get('/orders.json?auth=' + token)
+    .then(response => {
+      dispatch(fetchOrdersSuccess(Object.values(response.data)));
+    })
+    .catch(error => {
+      dispatch(fetchOrdersFail(error));
+    });
+};
+
+
+
+
+
+
 
 

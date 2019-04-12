@@ -6,6 +6,12 @@
     margin-top: 70px;
 }
 
+@media screen and (min-width: 1200px){
+    .Burger {
+        width: 40%;
+    }
+}
+
 .TopLayer{
     background:linear-gradient(#bc581e, #e27b36);
     width: 90%;
@@ -32,10 +38,10 @@
     @include seed(10%,40%,60deg)
 }
 .seedTwo{
-     @include seed(25%,40%,-20deg)
+    @include seed(25%,40%,-20deg)
 }
 .seedThree{
-     @include seed(45%,40%,60deg)
+    @include seed(45%,40%,60deg)
 }
 .seedFour{
      @include seed(62%,40%,-20deg)

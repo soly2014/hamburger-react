@@ -3,6 +3,7 @@ import Burger from '../../components/Burger/Burger';
 import BurgerControl from '../../components/Burger/BurgerControl/BurgerControl';
 import withErrorHandler from '../../components/Hoc/ErrorHandler/WithErrorHandler';
 import { connect } from 'react-redux';
+import axios from '../../axios-orders';
 import * as actionCreators from '../../store/actions/index';
 
 class BurgerBuilder extends Component {
@@ -23,10 +24,14 @@ class BurgerBuilder extends Component {
         return sum > 0;
     }
     handleClickPurchase = () => {
-        this.setState({showPurchaseModal:true});
+        if (this.props.isAuthenticated) {
+            this.setState({showPurchaseModal:true});
+        } else {
+            this.props.history.push('/sign-up');
+        }
     }
 
-    cancelPurchaseModal = () => {
+    cancelModal = () => {
         this.setState({showPurchaseModal:false});
     }
 
@@ -49,7 +54,8 @@ class BurgerBuilder extends Component {
                     addIngredient={this.props.onIngredientAdded}
                     continuePurchasing={this.continuePurchasing}
                     PurchaseSpinner={this.state.PurchaseSpinner}
-                    cancelPurchaseModal={this.cancelPurchaseModal} />
+                    isAuthenticated={this.props.isAuthenticated}
+                    cancelModal={this.cancelModal} />
             </>
         )
     }
@@ -59,7 +65,8 @@ const mapStateToProps = (state) => {
     return {
         ingredients:state.burgerBuilder.ingredients,
         TotalPrice:state.burgerBuilder.TotalPrice,
-        error:state.burgerBuilder.error
+        error:state.burgerBuilder.error,
+        isAuthenticated:state.auth.token !== null
     };
 };
 
@@ -71,4 +78,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder));
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder,axios));

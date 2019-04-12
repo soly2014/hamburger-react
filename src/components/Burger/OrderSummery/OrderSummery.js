@@ -17,7 +17,7 @@ const OrderSummery = (props) => {
                 </ul>
               </div>
               <div className={CN(bs['modal-footer'])}>
-                <button type="button" onClick={()=> props.cancelPurchaseModal()} className={CN(bs['btn'],bs['btn-secondary'])}>Close</button>
+                <button type="button" onClick={()=> props.cancelModal()} className={CN(bs['btn'],bs['btn-secondary'])}>Close</button>
                 <button type="button" onClick={()=> props.continuePurchasing()} className={CN(bs['btn'],bs['btn-primary'])}>continue purchasing</button>
               </div>
             </div>

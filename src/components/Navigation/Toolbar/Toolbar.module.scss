@@ -20,3 +20,45 @@
   align-items: center;
   height: 60px;
 }
+
+.BurgerMenu {
+  background:rgba(255,255,255,.3);
+  width: 35px;
+  height: 25px;
+  cursor: pointer;
+  position: relative;
+}
+
+.BurgerMenu:before {
+  content:'';
+  position: absolute;
+  height: 5px;
+  background-color: #733c00;
+  top: 5px;
+  left: 0;
+  width: 100%;
+}
+
+.BurgerMenu:after {
+  content:'';
+  position: absolute;
+  height: 5px;
+  background-color: #733c00;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+}
+
+
+@media (max-width: 600px){
+  .DesktopOnly{
+    display: none;
+  }
+}
+
+@media (min-width: 599px){
+  .MobileOnly{
+    display: none;
+  }
+}
+

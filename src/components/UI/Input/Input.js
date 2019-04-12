@@ -2,11 +2,15 @@ import React from 'react';
 import classes from './Input.module.scss';
 const Input = (props) => {
   let inputElement = null;
+  const inputClasses = [classes.InputElement];
+  if (props.touched && !props.valid) {
+    inputClasses.push(classes.Error)
+  }
   switch (props.elementType) {
     case 'input':
       inputElement = <input
             onChange={props.changed}
-            className={classes.InputElement}
+            className={inputClasses.join(' ')}
             type={props.type}
             {...props.elementConfig}
             defaultValue={props.value} />
@@ -14,7 +18,7 @@ const Input = (props) => {
       case 'textarea':
       inputElement = <textarea
                 onChange={props.changed}
-                className={classes.InputElement}
+                className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 defaultValue={props.value} >
                 </textarea>
@@ -22,7 +26,7 @@ const Input = (props) => {
       case 'select':
       inputElement = <select
                 onChange={props.changed}
-                className={classes.InputElement}
+                className={inputClasses.join(' ')}
                 placeholder={props.elementConfig.placeholder}
                 defaultValue={props.value} >
                 {props.elementConfig.options.map(option => {
@@ -33,7 +37,7 @@ const Input = (props) => {
     default:
       inputElement = <input
             onChange={props.changed}
-            className={classes.InputElement}
+            className={inputClasses.join(' ')}
             type={props.elementType}
             {...props.elementConfig}
             defaultValue={props.value} />

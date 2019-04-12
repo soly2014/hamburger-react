@@ -11,7 +11,7 @@ const Modal = (props) => {
             }}>
           {props.children}
           </div>
-          <Backdrop show={props.show} cancelPurchaseModal={props.cancelPurchaseModal}/>
+          <Backdrop show={props.show} cancelModal={props.cancelModal}/>
         </>
     )
 }

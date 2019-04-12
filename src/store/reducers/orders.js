@@ -1,10 +1,11 @@
 import * as actionTypes from '../actions/actionTypes';
 
-const intialState = {
+const initialState = {
+  orders:[],
   loading:false
 };
 
-const orders = (state = intialState,action) => {
+const orders = (state = initialState,action) => {
     switch (action.type) {
       case actionTypes.PURCHASE_BURGER_START:
         return {
@@ -21,7 +22,23 @@ const orders = (state = intialState,action) => {
             ...state,
             loading:false
         };
-    default:
+      case actionTypes.FETCH_ORDERS_START:
+        return {
+          ...state,
+          loading:true
+        };
+      case actionTypes.FETCH_ORDERS_SUCCESS:
+        return {
+          orders:action.orders,
+          loading:false
+        };
+      case actionTypes.FETCH_ORDERS_FAIL:
+        return {
+            ...state,
+            loading:false
+        };
+
+        default:
         return state;
     }
 }
