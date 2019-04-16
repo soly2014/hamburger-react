@@ -12,6 +12,12 @@
     }
 }
 
+@media screen and (max-width: 599px){
+    .Burger {
+        width: 85%;
+    }
+}
+
 .TopLayer{
     background:linear-gradient(#bc581e, #e27b36);
     width: 90%;

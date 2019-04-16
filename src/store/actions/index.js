@@ -15,5 +15,6 @@ export {
   auth,
   authFail,
   deleteAuthMessages,
-  authLogout
+  authLogout,
+  checkAuth
 } from './auth';

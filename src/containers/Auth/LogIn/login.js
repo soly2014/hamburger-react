@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Classes from "../auth.module.scss";
-import bs from "../../../assets/global-styles/bootstrap.module.css";
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Input from '../../../components/UI/Input/Input';

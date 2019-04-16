@@ -25,18 +25,3 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
-
-<!-- 
- 
-  Steps
-
-  = create checkout container
-
-
-
-scp root@159.89.52.162:/var/www/bakalty.com/laravel /var/www/html/
-scp -r /var/www/html/beqalty/ root@159.89.52.162:/var/www/bakalty.com/laravel/
-scp -r root@159.89.52.162:/var/www/bakalty.com/laravel/ /var/www/html/beqalty/
-khqPrzmTUfkzbH6d
-Rmehx^5?L
- -->

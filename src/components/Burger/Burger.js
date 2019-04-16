@@ -4,7 +4,7 @@ import bs from '../../assets/global-styles/bootstrap.module.css'
 import Classes from './Burger.module.scss';
 import CN from 'classnames';
 
-const Burger = (props) => { 
+const Burger = (props) => {
     let transformedIngredients = Object.keys(props.ingredients)
       .map(ingredient => {
         return [...Array(props.ingredients[ingredient])].map((_,i)=>{

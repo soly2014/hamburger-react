@@ -31,7 +31,8 @@ const authReducer = (state = initialState,action) => {
       case actionTypes.AUTH_LOG_OUT:
           return {
             ...state,
-            token:null
+            token:null,
+            userId:null
           }
       case actionTypes.DELETE_AUTH_FLASH_MESSAGES:
           return {

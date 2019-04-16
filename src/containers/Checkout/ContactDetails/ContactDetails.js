@@ -80,6 +80,7 @@ class ContactDetails extends Component {
     const orderDetails = {
       ingredients: this.props.ingredients,
       price: this.props.TotalPrice,
+      userId:this.props.userId,
       customer: {
         name: this.state.orderForm.name.value,
         address: {
@@ -91,7 +92,6 @@ class ContactDetails extends Component {
       },
       shippingMethod: this.state.orderForm.shippingMethod.value
     };
-
     this.props.onPurchasePurgerStart();
     this.props.onPurchasePurger(orderDetails,this.props.history);
 
@@ -158,7 +158,8 @@ const  mapStateToProps = (state) => {
   return {
     ingredients: state.burgerBuilder.ingredients,
     TotalPrice: state.burgerBuilder.TotalPrice,
-    loading:state.orders.loading
+    loading:state.orders.loading,
+    userId:state.auth.userId
   }
 }
 

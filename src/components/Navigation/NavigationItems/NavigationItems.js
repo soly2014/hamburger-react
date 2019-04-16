@@ -1,6 +1,7 @@
 import React from 'react';
 import Classes from './NavigationItems.module.scss';
-import NavigationItem from './NavigationItem/NavigationItem'
+import NavigationItem from './NavigationItem/NavigationItem';
+import { connect } from 'react-redux'
 
 const NavigationItems = (props) => {
   let authComponent;
@@ -9,15 +10,25 @@ const NavigationItems = (props) => {
   } else {
     authComponent = <NavigationItem url='/sign-up'>Sign Up</NavigationItem>
   }
-  if (props.isAuthenticated) {
-    authComponent = <NavigationItem url='/logout'>Log Out</NavigationItem>
+  if (props.isAuth) {
+    authComponent = <>
+                      <NavigationItem url='/orders'>Orders</NavigationItem>
+                      <NavigationItem url='/logout'>Log Out</NavigationItem>
+                    </>;
   }
 return (
     <ul className={Classes.NavigationItems}>
         <NavigationItem url='/' exact={true}>Burger Builder</NavigationItem>
-        <NavigationItem url='/orders'>Orders</NavigationItem>
         {authComponent}
     </ul>
   )
 }
-export default NavigationItems;
+
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.token !== null
+  }
+}
+
+export default connect(mapStateToProps)(NavigationItems)
+
