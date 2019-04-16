@@ -23,8 +23,8 @@ export const purchasePurgerSuccess = () => {
 };
 
 // post network request
-export const purchasePurger = (orderDetails,history) => (dispatch,getState) => {
-  axios.post('/orders.json?auth='+getState.auth.token,orderDetails)
+export const purchasePurger = (orderDetails,history) => (dispatch,token) => {
+  axios.post('/orders.json?auth='+token,orderDetails)
         .then(data => {
           dispatch(purchasePurgerSuccess());
           history.push('/');
