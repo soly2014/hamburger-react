@@ -9,6 +9,8 @@ import withErrorHandler from '../../../components/Hoc/ErrorHandler/WithErrorHand
 import axios from '../../../axios-orders';
 import ErrorDiv from '../../../components/UI/Error/ErrorDiv';
 import { Redirect } from 'react-router-dom';
+import { checkValidity } from '../../../shared/utilities';
+
 class LogIn extends Component {
   state = {
       loginForm:{
@@ -44,38 +46,13 @@ class LogIn extends Component {
       formIsValid:false
     };
 
-  checkValidity(value,rules){
-    let isValid = true;
-    if (!rules) {
-      return true;
-    }
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid;
-    }
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-    if (rules.isEmail) {
-        const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-        isValid = pattern.test(value) && isValid;
-    }
-    if (rules.isNumeric) {
-        const pattern = /^\d+$/;
-        isValid = pattern.test(value) && isValid;
-    }
-    return isValid;
-  }
-
   handleChangeInput(e,input){
     const updatedLoginForm = {
       ...this.state.loginForm,
       [input]: {
           ...this.state.loginForm[input],
           value: e.target.value,
-          valid: this.checkValidity(e.target.value, this.state.loginForm[input].validation),
+          valid: checkValidity(e.target.value, this.state.loginForm[input].validation),
           touched: true
       }
     };

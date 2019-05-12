@@ -23,7 +23,8 @@ export const purchasePurgerSuccess = () => {
 };
 
 // post network request
-export const purchasePurger = (orderDetails,history) => (dispatch,token) => {
+export const purchasePurger = (orderDetails,history,token) => (dispatch) => {
+  dispatch(purchasePurgerStart());
   axios.post('/orders.json?auth='+token,orderDetails)
         .then(data => {
           dispatch(purchasePurgerSuccess());
@@ -58,11 +59,11 @@ export const fetchOrdersSuccess = (orders) => {
   }
 };
 
-export const fetchOrders = token => dispatch => {
+export const fetchOrders = (token,userId) => dispatch => {
     dispatch(fetchOrdersStart());
-    const queryParams = 0;
-    axios.get('/orders.json?auth=' + token)
-    .then(response => {
+    const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+    axios.get( '/orders.json' + queryParams)
+          .then(response => {
       dispatch(fetchOrdersSuccess(Object.values(response.data)));
     })
     .catch(error => {

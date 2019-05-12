@@ -92,8 +92,7 @@ class ContactDetails extends Component {
       },
       shippingMethod: this.state.orderForm.shippingMethod.value
     };
-    this.props.onPurchasePurgerStart();
-    this.props.onPurchasePurger(orderDetails,this.props.history);
+    this.props.onPurchasePurger(orderDetails,this.props.history,this.props.token);
 
   };
 
@@ -149,7 +148,7 @@ class ContactDetails extends Component {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onPurchasePurger: (orderDetails,history) => dispatch(actionCreators.purchasePurger(orderDetails,history)),
+    onPurchasePurger: (orderDetails,history,token) => dispatch(actionCreators.purchasePurger(orderDetails,history,token)),
     onPurchasePurgerStart: () => dispatch(actionCreators.purchasePurgerStart())
   }
 }
@@ -159,7 +158,8 @@ const  mapStateToProps = (state) => {
     ingredients: state.burgerBuilder.ingredients,
     TotalPrice: state.burgerBuilder.TotalPrice,
     loading:state.orders.loading,
-    userId:state.auth.userId
+    userId:state.auth.userId,
+    token:state.auth.token
   }
 }
 

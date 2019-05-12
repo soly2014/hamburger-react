@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 class Orders extends Component {
   componentDidMount(){
-    this.props.onFetchingOrders(this.props.token);
+    this.props.onFetchingOrders(this.props.token,this.props.userId);
   }
   render(){
     let orders = this.props.orders.map(order => {
@@ -46,13 +46,14 @@ const mapStateToProps = (state, ownProps) => {
   return {
     orders: state.orders.orders,
     loading:state.orders.loading,
-    token:state.auth.token
+    token:state.auth.token,
+    userId:state.auth.userId
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onFetchingOrders: (token) => { dispatch(actionCreators.fetchOrders(token)) }
+    onFetchingOrders: (token,userId) => { dispatch(actionCreators.fetchOrders(token,userId)) }
   }
 }
 
