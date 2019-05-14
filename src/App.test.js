@@ -11,5 +11,5 @@ it('renders without crashing', () => {
 const sum = (x,y) => x+y;
 
 it('should return 20',() => {
-  expect(sum(8, 12)).toBe(220);
+  expect(sum(8, 12)).toBe(20);
 })
