@@ -7,3 +7,9 @@ it('renders without crashing', () => {
   // ReactDOM.render(<App />, div);
   // ReactDOM.unmountComponentAtNode(div);//damn fixed shithu
 });
+
+const sum = (x,y) => x+y;
+
+it('should return 20',() => {
+  expect(sum(8, 12)).toBe(20);
+})
