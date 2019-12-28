@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+
 class Layout extends Component {
     constructor(props){
         super(props)

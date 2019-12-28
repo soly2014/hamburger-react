@@ -6,7 +6,8 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import Order from '../../components/Order/Order';
 import WithErrorHandler from  '../../components/Hoc/ErrorHandler/WithErrorHandler';
 import {connect} from 'react-redux';
-import * as actionCreators from '../../store/actions/index'
+import * as actionCreators from '../../store/actions/index';
+
 class Orders extends Component {
   componentDidMount(){
     this.props.onFetchingOrders(this.props.token,this.props.userId);

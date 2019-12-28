@@ -40,8 +40,8 @@ const withErrorHandler = (WrappedComponent,axios) => {
               <WrappedComponent {...this.props}/>
             </>
           )
-        }
-      }
+    }
+  }
 }
 
 export default withErrorHandler;
